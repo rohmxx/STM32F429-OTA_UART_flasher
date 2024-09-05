@@ -698,6 +698,7 @@ void StartDefaultTask(void const * argument)
   flashstate = 1;
   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, 0);
   HAL_UART_Transmit(&huart5, sync_data, sizeof(sync_data), 10);
+  osDelay(1000);
   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, 1);
   /* Infinite loop */
   for(;;)
