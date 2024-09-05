@@ -8,6 +8,6 @@
 #ifndef INC_BIN_BLE_H_
 #define INC_BIN_BLE_H_
 
-extern uint8_t ble_data[1099072];
+extern uint8_t ble_data[1077456];
 
 #endif /* INC_BIN_BLE_H_ */

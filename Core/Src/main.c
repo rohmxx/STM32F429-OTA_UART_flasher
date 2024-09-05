@@ -17,7 +17,6 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <bin_cyan_blink.h>
 #include "main.h"
 #include "cmsis_os.h"
 #include "usb_host.h"
@@ -86,6 +85,10 @@ void StartDefaultTask(void const * argument);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 int flashstate = 0;
+int k = 0;
+uint8_t crc = 0;
+uint8_t sync_data[6] = {0xC0, 0xFF, 0xFE, 0xAA, 0x55, 0x90};
+uint8_t crc_send[1] = {0x00};
 /* USER CODE END 0 */
 
 /**
@@ -685,15 +688,15 @@ static void MX_GPIO_Init(void)
   * @param  argument: Not used
   * @retval None
   */
+#define binfile ble_data
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
   /* init code for USB_HOST */
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 5 */
-  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, 0);
-  uint8_t sync_data[6] = {0xC0, 0xFF, 0xFE, 0xAA, 0x55, 0x90};
   flashstate = 1;
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, 0);
   HAL_UART_Transmit(&huart5, sync_data, sizeof(sync_data), 10);
   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, 1);
   /* Infinite loop */
@@ -702,16 +705,33 @@ void StartDefaultTask(void const * argument)
 	if(flashstate == 1)
 	{
 		flashstate = 0;
-		for (int i = 0; i < sizeof(ble_data); i++) {
-			HAL_UART_Transmit(&huart5, &ble_data[i], 1, 100);
+		for (int i = 0; i < sizeof(binfile); i++)
+		{
 			if ((i % 1024) == 0)
 			{
 				HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
-				if(i == 1024){
-					osDelay(2000);
+				if (i == 1024)
+				{
+					osDelay(4000);
+				}
+			}
+			HAL_UART_Transmit(&huart5, &binfile[i], 1, 10);
+			crc ^= binfile[i];
+			for (uint8_t j = 0; j < 8; j++)
+			{
+				if (crc & 0x80)
+				{
+					crc = (crc << 1) ^ 0x07;
+				}
+				else
+				{
+					crc <<= 1;
 				}
 			}
 		}
+		crc_send[0] = crc;
+		osDelay(6000);
+		HAL_UART_Transmit(&huart5, &crc_send[0], sizeof(crc_send), 10);
 	}
 	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, 0);
   }
