@@ -10,6 +10,6 @@
 
 #include <stdint.h>
 
-extern uint8_t blink_data[277744];
+extern uint8_t blink_data[277504];
 
 #endif /* INC_BIN_CYAN_BLINK_H_ */

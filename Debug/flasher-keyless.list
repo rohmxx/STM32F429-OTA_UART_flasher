@@ -7,47 +7,47 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         0000d5a4  080001b0  080001b0  000011b0  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00107154  0800d754  0800d754  0000e754  2**2
+  2 .rodata       0010c374  0800d754  0800d754  0000e754  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  081148a8  081148a8  00116088  2**0
+  3 .ARM.extab    00000000  08119ac8  08119ac8  0011b088  2**0
                   CONTENTS
-  4 .ARM          00000008  081148a8  081148a8  001158a8  2**2
+  4 .ARM          00000008  08119ac8  08119ac8  0011aac8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  081148b0  081148b0  00116088  2**0
+  5 .preinit_array 00000000  08119ad0  08119ad0  0011b088  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  081148b0  081148b0  001158b0  2**2
+  6 .init_array   00000004  08119ad0  08119ad0  0011aad0  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  081148b4  081148b4  001158b4  2**2
+  7 .fini_array   00000004  08119ad4  08119ad4  0011aad4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         00000088  20000000  081148b8  00116000  2**2
+  8 .data         00000088  20000000  08119ad8  0011b000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .ccmram       00000000  10000000  10000000  00116088  2**0
+  9 .ccmram       00000000  10000000  10000000  0011b088  2**0
                   CONTENTS
- 10 .bss          00008fe4  20000088  20000088  00116088  2**2
+ 10 .bss          00008fe4  20000088  20000088  0011b088  2**2
                   ALLOC
- 11 ._user_heap_stack 00000604  2000906c  2000906c  00116088  2**0
+ 11 ._user_heap_stack 00000604  2000906c  2000906c  0011b088  2**0
                   ALLOC
- 12 .ARM.attributes 00000030  00000000  00000000  00116088  2**0
+ 12 .ARM.attributes 00000030  00000000  00000000  0011b088  2**0
                   CONTENTS, READONLY
- 13 .debug_info   0002985f  00000000  00000000  001160b8  2**0
+ 13 .debug_info   0002985f  00000000  00000000  0011b0b8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00005da6  00000000  00000000  0013f917  2**0
+ 14 .debug_abbrev 00005da6  00000000  00000000  00144917  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 000022d8  00000000  00000000  001456c0  2**3
+ 15 .debug_aranges 000022d8  00000000  00000000  0014a6c0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0002b2ef  00000000  00000000  00147998  2**0
+ 16 .debug_macro  0002b2ef  00000000  00000000  0014c998  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0002aba9  00000000  00000000  00172c87  2**0
+ 17 .debug_line   0002aba9  00000000  00000000  00177c87  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000f5483  00000000  00000000  0019d830  2**0
+ 18 .debug_str    000f5483  00000000  00000000  001a2830  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00292cb3  2**0
+ 19 .comment      00000043  00000000  00000000  00297cb3  2**0
                   CONTENTS, READONLY
- 20 .debug_rnglists 00001aec  00000000  00000000  00292cf6  2**0
+ 20 .debug_rnglists 00001aec  00000000  00000000  00297cf6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_frame  00009718  00000000  00000000  002947e4  2**2
+ 21 .debug_frame  00009718  00000000  00000000  002997e4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line_str 00000062  00000000  00000000  0029defc  2**0
+ 22 .debug_line_str 00000062  00000000  00000000  002a2efc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1951,7 +1951,7 @@ void StartDefaultTask(void const * argument)
  8000de2:	68fb      	ldr	r3, [r7, #12]
  8000de4:	4a11      	ldr	r2, [pc, #68]	@ (8000e2c <StartDefaultTask+0x128>)
  8000de6:	4293      	cmp	r3, r2
- 8000de8:	d3b5      	bcc.n	8000d56 <StartDefaultTask+0x52>
+ 8000de8:	d9b5      	bls.n	8000d56 <StartDefaultTask+0x52>
 				}
 			}
 		}
@@ -1983,7 +1983,7 @@ void StartDefaultTask(void const * argument)
  8000e20:	200004e0 	.word	0x200004e0
  8000e24:	0800d7c0 	.word	0x0800d7c0
  8000e28:	200005ac 	.word	0x200005ac
- 8000e2c:	001070d0 	.word	0x001070d0
+ 8000e2c:	0010c2ef 	.word	0x0010c2ef
  8000e30:	200005b0 	.word	0x200005b0
 
 08000e34 <HAL_TIM_PeriodElapsedCallback>:
@@ -3827,7 +3827,7 @@ LoopFillZerobss:
   ldr r1, =_edata
  8001820:	20000088 	.word	0x20000088
   ldr r2, =_sidata
- 8001824:	081148b8 	.word	0x081148b8
+ 8001824:	08119ad8 	.word	0x08119ad8
   ldr r2, =_sbss
  8001828:	20000088 	.word	0x20000088
   ldr r4, =_ebss
@@ -13879,7 +13879,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  80055be:	bf00      	nop
  80055c0:	40023c00 	.word	0x40023c00
  80055c4:	40023800 	.word	0x40023800
- 80055c8:	08114890 	.word	0x08114890
+ 80055c8:	08119ab0 	.word	0x08119ab0
  80055cc:	20000008 	.word	0x20000008
  80055d0:	2000000c 	.word	0x2000000c
 
@@ -14181,7 +14181,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8005814:	4618      	mov	r0, r3
  8005816:	bd80      	pop	{r7, pc}
  8005818:	40023800 	.word	0x40023800
- 800581c:	081148a0 	.word	0x081148a0
+ 800581c:	08119ac0 	.word	0x08119ac0
 
 08005820 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -14207,7 +14207,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  800583c:	4618      	mov	r0, r3
  800583e:	bd80      	pop	{r7, pc}
  8005840:	40023800 	.word	0x40023800
- 8005844:	081148a0 	.word	0x081148a0
+ 8005844:	08119ac0 	.word	0x08119ac0
 
 08005848 <HAL_RCC_GetClockConfig>:
   * will be configured.
@@ -36457,10 +36457,10 @@ void MX_DriverVbusHS(uint8_t state)
  800d672:	4798      	blx	r3
  800d674:	3601      	adds	r6, #1
  800d676:	e7f2      	b.n	800d65e <__libc_init_array+0x1e>
- 800d678:	081148b0 	.word	0x081148b0
- 800d67c:	081148b0 	.word	0x081148b0
- 800d680:	081148b0 	.word	0x081148b0
- 800d684:	081148b4 	.word	0x081148b4
+ 800d678:	08119ad0 	.word	0x08119ad0
+ 800d67c:	08119ad0 	.word	0x08119ad0
+ 800d680:	08119ad0 	.word	0x08119ad0
+ 800d684:	08119ad4 	.word	0x08119ad4
 
 0800d688 <__retarget_lock_acquire_recursive>:
  800d688:	4770      	bx	lr
